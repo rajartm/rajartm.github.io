@@ -9,6 +9,19 @@ body {
   line-height: 1.6;
 }
 
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+  
+  .links a {
+    display: block;
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+}
+
 /* HEADER */
 header {
   margin-bottom: 40px;
@@ -69,6 +82,13 @@ h4 {
   margin-top: 20px;
   border-radius: 8px;
   border: 1px solid #334155;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: #475569;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* SIGNATURE PROJECT HIGHLIGHT */
