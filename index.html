@@ -3,92 +3,1079 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Raja Ravi Teja</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <title>Raja Ravi Teja Madagala — Senior Construction Estimator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg:        #F8F7F4;
+      --white:     #FFFFFF;
+      --navy:      #1B2E4B;
+      --charcoal:  #1C1C1C;
+      --gold:      #C4920A;
+      --gold-lt:   #F5E9C8;
+      --mid:       #4A5568;
+      --muted:     #8A96A3;
+      --border:    #E2DDD6;
+      --rule:      #C4920A;
+      --display:   'Playfair Display', Georgia, serif;
+      --body:      'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--charcoal);
+      font-family: var(--body);
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(248,247,244,0.0);
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(248,247,244,0.97);
+      border-color: var(--border);
+      box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1120px;
+      margin: auto;
+      padding: 0 40px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 17px;
+      color: var(--navy);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--navy); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Blueprint grid — subtle, construction-specific */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(27,46,75,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(27,46,75,0.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* Gold accent bar — left edge */
+    #hero::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 15%; bottom: 15%;
+      width: 4px;
+      background: var(--gold);
+      border-radius: 0 2px 2px 0;
+    }
+
+    .hero-inner {
+      max-width: 1120px;
+      margin: auto;
+      padding: 100px 40px 80px;
+      width: 100%;
+      position: relative;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s forwards;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: var(--gold);
+      display: block;
+    }
+
+    h1.hero-name {
+      font-family: var(--display);
+      font-size: clamp(44px, 6.5vw, 88px);
+      font-weight: 900;
+      line-height: 1.02;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.22s forwards;
+    }
+
+    .hero-desc {
+      max-width: 560px;
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--mid);
+      margin-bottom: 52px;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.34s forwards;
+    }
+
+    /* Stats row — like a project tender summary */
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      margin-bottom: 52px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      max-width: 520px;
+      background: var(--white);
+      opacity: 0;
+      animation: fadeUp 0.6s 0.46s forwards;
+    }
+    .hero-stat {
+      flex: 1;
+      padding: 22px 28px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .hero-stat:hover::before { transform: scaleX(1); }
+    .stat-num {
+      font-family: var(--display);
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-lbl {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.58s forwards;
+    }
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+      padding: 14px 30px;
+      border-radius: 3px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #142540; transform: translateY(-1px); }
+    .btn-outline {
+      border: 1.5px solid var(--border);
+      color: var(--mid);
+      padding: 14px 30px;
+      border-radius: 3px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--navy); color: var(--navy); }
+
+    /* ── SECTION WRAPPER ── */
+    .section-wrap {
+      max-width: 1120px;
+      margin: auto;
+      padding: 96px 40px;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-eyebrow::after {
+      content: '';
+      flex: 1;
+      max-width: 48px;
+      height: 1.5px;
+      background: var(--gold);
+    }
+
+    h2.section-title {
+      font-family: var(--display);
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    /* ── ABOUT / VALUE PROP ── */
+    #about {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 80px;
+      align-items: start;
+      margin-top: 48px;
+    }
+    .about-body p {
+      font-size: 16px;
+      color: var(--mid);
+      line-height: 1.8;
+      margin-bottom: 18px;
+      font-weight: 300;
+    }
+    .about-body p strong {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+    .value-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .value-card {
+      padding: 22px 24px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      border-left: 3px solid var(--gold);
+      background: var(--bg);
+      transition: box-shadow 0.2s;
+    }
+    .value-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+    .value-card-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--navy);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .value-card p {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ── PROJECT LEDGER (signature element) ── */
+    #projects {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ledger {
+      margin-top: 48px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--white);
+    }
+    .ledger-header {
+      display: grid;
+      grid-template-columns: 2.4fr 0.9fr 0.8fr 1.8fr;
+      padding: 12px 28px;
+      background: var(--navy);
+      gap: 16px;
+    }
+    .ledger-header span {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .ledger-row {
+      display: grid;
+      grid-template-columns: 2.4fr 0.9fr 0.8fr 1.8fr;
+      padding: 22px 28px;
+      gap: 16px;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+      transition: background 0.15s;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: background 0.15s, opacity 0.5s ease, transform 0.5s ease;
+    }
+    .ledger-row:last-child { border-bottom: none; }
+    .ledger-row:hover { background: #FAFAF8; }
+    .ledger-row.visible { opacity: 1; transform: translateY(0); }
+
+    .row-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--charcoal);
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+    .row-sector {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .row-value {
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--navy);
+    }
+    .row-type {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 2px;
+      background: var(--gold-lt);
+      color: var(--gold);
+      border: 1px solid rgba(196,146,10,0.3);
+    }
+    .row-type.eci {
+      background: #E8F0FA;
+      color: var(--navy);
+      border-color: rgba(27,46,75,0.2);
+    }
+    .row-outcome {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.5;
+    }
+    .row-outcome strong {
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .ledger-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 28px;
+      background: var(--gold-lt);
+      border-top: 2px solid var(--gold);
+    }
+    .ledger-total-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .ledger-total-val {
+      font-family: var(--display);
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    /* ── CAPABILITIES ── */
+    #capabilities {
+      background: var(--navy);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    #capabilities .section-eyebrow { color: var(--gold); }
+    #capabilities .section-eyebrow::after { background: var(--gold); }
+    #capabilities h2.section-title { color: #fff; }
+
+    .caps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    .cap-item {
+      background: var(--navy);
+      padding: 32px 28px;
+      transition: background 0.2s;
+    }
+    .cap-item:hover { background: #1f3557; }
+    .cap-icon {
+      font-size: 24px;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .cap-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .cap-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    .tools-section {
+      margin-top: 52px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .tools-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 18px;
+    }
+    .tools-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tool-tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 6px 16px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tool-tag:hover { color: #fff; border-color: rgba(255,255,255,0.35); }
+
+    /* ── EXPERIENCE TIMELINE ── */
+    #experience {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline {
+      margin-top: 52px;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px; bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+    .tl-item {
+      padding-left: 36px;
+      padding-bottom: 48px;
+      position: relative;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute;
+      left: -5px;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .tl-item:hover .tl-dot {
+      border-color: var(--gold);
+      background: var(--gold);
+    }
+    .tl-period {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .tl-role {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+    .tl-company {
+      font-size: 14px;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .tl-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .tl-points li {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.6;
+      padding-left: 16px;
+      position: relative;
+    }
+    .tl-points li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--bg);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-top: 52px;
+    }
+    .contact-copy h3 {
+      font-family: var(--display);
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 14px;
+      line-height: 1.2;
+    }
+    .contact-copy p {
+      font-size: 15px;
+      color: var(--mid);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 22px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      text-decoration: none;
+      color: var(--charcoal);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .contact-link:hover {
+      border-color: var(--navy);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .contact-link-icon { font-size: 20px; flex-shrink: 0; }
+    .contact-link-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .contact-link-value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 32px 40px;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-name {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .nav-inner { padding: 0 20px; }
+      .hero-inner, .section-wrap { padding-left: 20px; padding-right: 20px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .caps-grid { grid-template-columns: 1fr; }
+      .ledger-header, .ledger-row { grid-template-columns: 1fr 1fr; }
+      .ledger-header span:nth-child(3),
+      .ledger-header span:nth-child(4),
+      .ledger-row .row-type,
+      .ledger-row .row-outcome { display: none; }
+      footer { padding: 24px 20px; }
+      .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
 <body>
-<main>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Raja Madagala</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
 <!-- HERO -->
 <section id="hero">
-  <h1>Raja Ravi Teja Madagala</h1>
-  <p class="role">Construction Estimator</p>
-
-  <p class="impact">
-    Delivered cost planning and tendering across commercial and government projects up to $20M.
-  </p>
-
-  <div class="cta">
-    <a href="#contact" class="btn-primary">Get in touch</a>
-    <a href="assets/Raja Madagala Resume.pdf" class="btn-secondary">View Resume</a>
-  </div>
-</section>
-
-<!-- PROOF -->
-<section class="proof">
-  <div>8+ years experience</div>
-  <div>$20M project scale</div>
-  <div>50+ projects delivered</div>
-</section>
-
-<!-- SIGNATURE -->
-<section>
-  <h2>Signature Work</h2>
-
-  <div class="project-large">
-    <h3>Great Keppel Island – Arrivals Plaza ($8M)</h3>
-
-    <p>
-      Built a logistics-aware cost model for a remote island project,
-      improving cost reliability and reducing execution risk.
+  <div class="hero-inner">
+    <div class="hero-tag">Available · Queensland, Australia</div>
+    <h1 class="hero-name">Senior Construction<br>Estimator</h1>
+    <p class="hero-desc">
+      Eight years delivering cost-competitive tenders and commercial strategy across government, education, and tourism sectors. 
+      From ECI engagements to remote island logistics — I price what others won't touch.
     </p>
-
-    <ul>
-      <li>Handled subcontractor constraints</li>
-      <li>Modeled transport and staging risk</li>
-      <li>Reduced cost variance by ~5–8%</li>
-    </ul>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="stat-num">8+</div>
+        <div class="stat-lbl">Years exp.</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">$20M</div>
+        <div class="stat-lbl">Project scale</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-lbl">Tenders</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in touch</a>
+      <a href="assets/Raja Madagala Resume.pdf" class="btn-outline" target="_blank">Download Resume</a>
+    </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section>
-  <h2>Selected Projects</h2>
-
-  <div class="project">
-    <h3>Yeppoon State School ($1.7M)</h3>
-    <p>Improved subcontractor pricing competitiveness by ~5%</p>
-  </div>
-
-  <div class="project">
-    <h3>North Rockhampton SHS ($750K)</h3>
-    <p>Reduced execution pricing variance by ~5–7%</p>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="section-eyebrow">About</div>
+    <h2 class="section-title">Commercial thinking.<br>Delivery-ready numbers.</h2>
+    <div class="about-grid">
+      <div class="about-body reveal">
+        <p>
+          I don't just produce estimates — I build cost models that hold up under scrutiny from clients, head contractors, and the delivery team that has to execute them. 
+          After eight years across <strong>government, education, commercial, and tourism sectors</strong>, I know where the risk hides and how to price it honestly.
+        </p>
+        <p>
+          My background spans the full pre-construction lifecycle: from <strong>Early Contractor Involvement (ECI)</strong> engagements where I'm shaping scope before design is locked, through to <strong>Design and Construct tenders</strong> built from engineering briefs with zero documentation to start from.
+        </p>
+        <p>
+          At Paynters and Johns Lyng Group, I've worked on projects where the margin for error is real — remote island logistics, rectification works, government compliance — and delivered tenders that win and estimates that execute.
+        </p>
+      </div>
+      <div class="value-cards">
+        <div class="value-card reveal" style="transition-delay:0.1s">
+          <div class="value-card-title">ECI &amp; Preconstruction</div>
+          <p>Brought in before design is locked to shape cost strategy, manage value engineering, and deliver proposals under client budget targets.</p>
+        </div>
+        <div class="value-card reveal" style="transition-delay:0.2s">
+          <div class="value-card-title">D&amp;C from Brief</div>
+          <p>Able to develop full scopes from engineering briefs and minimal documentation — first-principles estimation where others require complete drawings.</p>
+        </div>
+        <div class="value-card reveal" style="transition-delay:0.3s">
+          <div class="value-card-title">Subcontractor Procurement</div>
+          <p>Managing 15–30+ trade packages per project: RFQs, scope validation, pricing comparisons, and award recommendations that improve bid competitiveness.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section>
-  <h2>Capabilities</h2>
-  <p class="skills">
-    Cost Planning • Tendering • Procurement • Value Engineering • Risk Management
-  </p>
+<!-- PROJECTS — THE LEDGER -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Project Ledger</div>
+    <h2 class="section-title">Key projects secured.</h2>
+
+    <div class="ledger reveal" style="margin-top:48px">
+      <div class="ledger-header">
+        <span>Project</span>
+        <span>Value</span>
+        <span>Type</span>
+        <span>Key Outcome</span>
+      </div>
+
+      <div class="ledger-row">
+        <div>
+          <div class="row-name">Gladstone Amateur Basketball Association — Indoor Sports Court</div>
+          <div class="row-sector">Community · Gladstone QLD</div>
+        </div>
+        <div class="row-value">$9M</div>
+        <div><span class="row-type eci">ECI</span></div>
+        <div class="row-outcome">Value management process delivered proposal <strong>under intended client budget</strong></div>
+      </div>
+
+      <div class="ledger-row">
+        <div>
+          <div class="row-name">Great Keppel Island — Arrivals Plaza</div>
+          <div class="row-sector">Tourism · Remote Island QLD</div>
+        </div>
+        <div class="row-value">$8M</div>
+        <div><span class="row-type">D&amp;C</span></div>
+        <div class="row-outcome">Risk-adjusted model for remote logistics and marine transport — <strong>cost variance reduced 5–8%</strong></div>
+      </div>
+
+      <div class="ledger-row">
+        <div>
+          <div class="row-name">Yeppoon State High School — Block D Rectification</div>
+          <div class="row-sector">Government · Education QLD</div>
+        </div>
+        <div class="row-value">$1.3M</div>
+        <div><span class="row-type">D&amp;C</span></div>
+        <div class="row-outcome">Full scope developed from engineering brief — <strong>zero base documentation</strong></div>
+      </div>
+
+      <div class="ledger-row">
+        <div>
+          <div class="row-name">Yeppoon State School — Block B Refurbishment</div>
+          <div class="row-sector">Government · Education QLD</div>
+        </div>
+        <div class="row-value">$1.7M</div>
+        <div><span class="row-type">Lump Sum</span></div>
+        <div class="row-outcome">Led subcontractor packaging end-to-end — <strong>pricing competitiveness improved ~5%</strong></div>
+      </div>
+
+      <div class="ledger-row">
+        <div>
+          <div class="row-name">North Rockhampton SHS — Block K</div>
+          <div class="row-sector">Government · Education QLD</div>
+        </div>
+        <div class="row-value">$750K</div>
+        <div><span class="row-type">Lump Sum</span></div>
+        <div class="row-outcome">Trade-level structural and roofing estimates — <strong>execution variance 5–7% below benchmark</strong></div>
+      </div>
+
+      <div class="ledger-total">
+        <span class="ledger-total-label">Total Project Value Tendered</span>
+        <span class="ledger-total-val">$20.75M+</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Capabilities</div>
+    <h2 class="section-title">The full commercial toolkit.</h2>
+
+    <div class="caps-grid">
+      <div class="cap-item reveal">
+        <span class="cap-icon">📐</span>
+        <div class="cap-title">Cost Planning &amp; Estimation</div>
+        <p class="cap-desc">Concept through IFC — detailed take-offs, trade-level pricing, and risk-adjusted cost models across all project phases.</p>
+      </div>
+      <div class="cap-item reveal" style="transition-delay:0.06s">
+        <span class="cap-icon">📋</span>
+        <div class="cap-title">Tender &amp; Bid Management</div>
+        <p class="cap-desc">End-to-end tender preparation including methodology, programs, and compliance documentation for government and commercial clients.</p>
+      </div>
+      <div class="cap-item reveal" style="transition-delay:0.12s">
+        <span class="cap-icon">🤝</span>
+        <div class="cap-title">Early Contractor Involvement</div>
+        <p class="cap-desc">Preconstruction engagement with clients and consultants — shaping scope, managing value engineering, and targeting budget outcomes before design is locked.</p>
+      </div>
+      <div class="cap-item reveal" style="transition-delay:0.18s">
+        <span class="cap-icon">⚙️</span>
+        <div class="cap-title">Value Engineering</div>
+        <p class="cap-desc">Identifying cost reduction opportunities without compromising scope, specification, or compliance — from materials to methodology.</p>
+      </div>
+      <div class="cap-item reveal" style="transition-delay:0.24s">
+        <span class="cap-icon">🔗</span>
+        <div class="cap-title">Subcontractor Procurement</div>
+        <p class="cap-desc">RFQ management across 15–30+ trade packages per project — scope alignment, pricing comparison, and award recommendations.</p>
+      </div>
+      <div class="cap-item reveal" style="transition-delay:0.30s">
+        <span class="cap-icon">⚠️</span>
+        <div class="cap-title">Risk &amp; Commercial Analysis</div>
+        <p class="cap-desc">Identifying, pricing, and documenting project-specific risk — from remote logistics to regulatory compliance and supply chain exposure.</p>
+      </div>
+    </div>
+
+    <div class="tools-section reveal">
+      <div class="tools-label">Software &amp; Tools</div>
+      <div class="tools-row">
+        <span class="tool-tag">EstimateOne</span>
+        <span class="tool-tag">CostX</span>
+        <span class="tool-tag">Sage Estimating</span>
+        <span class="tool-tag">Planswift</span>
+        <span class="tool-tag">Bluebeam Revu</span>
+        <span class="tool-tag">BuilderTrend</span>
+        <span class="tool-tag">MS Project</span>
+        <span class="tool-tag">AutoCAD</span>
+        <span class="tool-tag">Revit</span>
+        <span class="tool-tag">Navisworks</span>
+        <span class="tool-tag">MS Excel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Experience</div>
+    <h2 class="section-title reveal">Career history.</h2>
+
+    <div class="timeline" style="margin-top:52px">
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Nov 2024 — Present</div>
+        <div class="tl-role">Senior Construction Estimator</div>
+        <div class="tl-company">Paynters Pty Ltd · QLD</div>
+        <ul class="tl-points">
+          <li>Lead ECI and D&C tenders up to $20M across education, government, and tourism sectors</li>
+          <li>Delivered $9M ECI proposal under client budget through structured value management</li>
+          <li>Developed full D&C scopes from engineering briefs with zero base documentation</li>
+          <li>Managed 15–30+ trade RFQ processes per project through to award recommendation</li>
+          <li>Collaborated with delivery teams at award stage to ensure pricing assumptions translate into execution</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Nov 2023 — Nov 2024</div>
+        <div class="tl-role">Construction Estimator</div>
+        <div class="tl-company">Johns Lyng Group · QLD</div>
+        <ul class="tl-points">
+          <li>Delivered competitive tenders for QBuild government works and commercial projects</li>
+          <li>Produced accurate take-offs from IFC drawings across structural, architectural, and services trades</li>
+          <li>Prepared complete tender packages including methodology, programs, and compliance documentation</li>
+          <li>Supported post-award procurement and coordination handover to delivery teams</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-period">May 2020 — Nov 2023</div>
+        <div class="tl-role">Estimator</div>
+        <div class="tl-company">Builders Discount Warehouse · QLD</div>
+        <ul class="tl-points">
+          <li>Detailed estimates for residential and commercial fit-out projects — kitchens, cabinetry, interiors</li>
+          <li>Managed multi-unit builder projects from initial pricing through to completion</li>
+          <li>Negotiated supplier pricing and identified cost-saving alternatives</li>
+        </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-period">Jun 2018 — May 2020</div>
+        <div class="tl-role">Construction Cadet</div>
+        <div class="tl-company">Accord Partners Australia · VIC</div>
+        <ul class="tl-points">
+          <li>Site supervision support, cost analysis, tender comparisons, contractor coordination</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <h2>Contact</h2>
-
-  <p>
-    If you're working on a project that needs accurate, delivery-aligned estimating — let's talk.
-  </p>
-
-  <div class="cta">
-    <a href="mailto:rajaravitejamadagala@gmail.com" class="btn-primary">Email Me</a>
-    <a href="assets/Raja Madagala Resume.pdf" class="btn-secondary">Download Resume</a>
+  <div class="section-wrap">
+    <div class="section-eyebrow">Contact</div>
+    <h2 class="section-title reveal">Let's work on something<br>that gets built.</h2>
+    <div class="contact-grid">
+      <div class="contact-copy reveal">
+        <h3>Open to the right opportunity.</h3>
+        <p>
+          If you're a Tier-1 or leading Tier-2 builder looking for a senior estimator or commercial lead who can hit the ground running — I'd like to hear from you.
+        </p>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="mailto:rajaravitejamadagala@gmail.com" class="btn-primary">Send an email</a>
+          <a href="assets/Raja Madagala Resume.pdf" class="btn-outline" target="_blank">Download Resume</a>
+        </div>
+      </div>
+      <div class="contact-links reveal" style="transition-delay:0.15s">
+        <a href="mailto:rajaravitejamadagala@gmail.com" class="contact-link">
+          <div class="contact-link-icon">✉️</div>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">rajaravitejamadagala@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:0432250430" class="contact-link">
+          <div class="contact-link-icon">📞</div>
+          <div>
+            <div class="contact-link-label">Phone</div>
+            <div class="contact-link-value">0432 250 430</div>
+          </div>
+        </a>
+        <div class="contact-link">
+          <div class="contact-link-icon">📍</div>
+          <div>
+            <div class="contact-link-label">Location</div>
+            <div class="contact-link-value">Queensland, Australia</div>
+          </div>
+        </div>
+        <a href="assets/Raja Madagala Resume.pdf" class="contact-link" target="_blank">
+          <div class="contact-link-icon">📄</div>
+          <div>
+            <div class="contact-link-label">Resume</div>
+            <div class="contact-link-value">Raja Madagala — Estimator CV.pdf</div>
+          </div>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
-</main>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-name">Raja Ravi Teja Madagala</div>
+    <div class="footer-copy">Senior Construction Estimator · QLD, Australia · 2025</div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Ledger rows stagger
+  const rowObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const rows = document.querySelectorAll('.ledger-row');
+        rows.forEach((row, i) => {
+          setTimeout(() => row.classList.add('visible'), i * 100);
+        });
+        rowObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  const ledger = document.querySelector('.ledger');
+  if (ledger) rowObserver.observe(ledger);
+</script>
 </body>
 </html>
