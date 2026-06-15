@@ -769,10 +769,10 @@
           After eight years across <strong>government, education, commercial, and tourism sectors</strong>, I know where the risk hides and how to price it honestly.
         </p>
         <p>
-          My background spans the full pre-construction lifecycle: from <strong>Early Contractor Involvement (ECI)</strong> engagements where I'm shaping scope before design is locked, through to <strong>Design and Construct tenders</strong> built from engineering briefs with zero documentation to start from.
+          My background spans the full pre-construction lifecycle: from <strong>Early Contractor Involvement (ECI)</strong> engagements where I'm shaping scope before design is locked, through to lump sum and cost-reimbursable delivery. I've built estimates from concept sketches and engineering briefs where drawings don't exist yet, and I've priced complex risk — remote logistics, heritage compliance, staged delivery — with specificity.
         </p>
         <p>
-          At Paynters and Johns Lyng Group, I've worked on projects where the margin for error is real — remote island logistics, rectification works, government compliance — and delivered tenders that win and estimates that execute.
+          At Paynters and Johns Lyng Group, I've worked on projects where the margin for error is real — remote island logistics, rectification works, government compliance — and delivered tenders that win on substance, not just price.
         </p>
       </div>
       <div class="value-cards">
@@ -934,7 +934,7 @@
       <div class="tl-item reveal">
         <div class="tl-dot"></div>
         <div class="tl-period">Nov 2024 — Present</div>
-        <div class="tl-role">Senior Construction Estimator</div>
+        <div class="tl-role">Construction Estimator</div>
         <div class="tl-company">Paynters Pty Ltd · QLD</div>
         <ul class="tl-points">
           <li>Lead ECI and D&C tenders up to $20M across education, government, and tourism sectors</li>
@@ -1000,33 +1000,19 @@
           <a href="assets/Raja Madagala Resume.pdf" class="btn-outline" target="_blank">Download Resume</a>
         </div>
       </div>
-      <div class="contact-links reveal" style="transition-delay:0.15s">
+      <div class="contact-links reveal">
         <a href="mailto:rajaravitejamadagala@gmail.com" class="contact-link">
-          <div class="contact-link-icon">✉️</div>
+          <span class="contact-link-icon">✉️</span>
           <div>
             <div class="contact-link-label">Email</div>
             <div class="contact-link-value">rajaravitejamadagala@gmail.com</div>
           </div>
         </a>
-        <a href="tel:0432250430" class="contact-link">
-          <div class="contact-link-icon">📞</div>
+        <a href="https://www.linkedin.com/in/rajaravitejamadagala/" class="contact-link" target="_blank">
+          <span class="contact-link-icon">💼</span>
           <div>
-            <div class="contact-link-label">Phone</div>
-            <div class="contact-link-value">0432 250 430</div>
-          </div>
-        </a>
-        <div class="contact-link">
-          <div class="contact-link-icon">📍</div>
-          <div>
-            <div class="contact-link-label">Location</div>
-            <div class="contact-link-value">Queensland, Australia</div>
-          </div>
-        </div>
-        <a href="assets/Raja Madagala Resume.pdf" class="contact-link" target="_blank">
-          <div class="contact-link-icon">📄</div>
-          <div>
-            <div class="contact-link-label">Resume</div>
-            <div class="contact-link-value">Raja Madagala — Estimator CV.pdf</div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">linkedin.com/in/rajaravitejamadagala</div>
           </div>
         </a>
       </div>
@@ -1034,48 +1020,50 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-name">Raja Ravi Teja Madagala</div>
-    <div class="footer-copy">Senior Construction Estimator · QLD, Australia · 2025</div>
+    <div class="footer-name">Raja Madagala</div>
+    <div class="footer-copy">&copy; 2025. All rights reserved.</div>
   </div>
 </footer>
 
+<!-- Scroll & Reveal -->
 <script>
-  // Nav scroll
+document.addEventListener('DOMContentLoaded', function() {
+  // Nav scroll effect
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 30);
-  }, { passive: true });
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
-    });
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
   });
 
   // Reveal on scroll
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const reveals = document.querySelectorAll('.reveal');
+  const ledgerRows = document.querySelectorAll('.ledger-row');
 
-  // Ledger rows stagger
-  const rowObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const rows = document.querySelectorAll('.ledger-row');
-        rows.forEach((row, i) => {
-          setTimeout(() => row.classList.add('visible'), i * 100);
-        });
-        rowObserver.disconnect();
+  function revealOnScroll() {
+    reveals.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 50) {
+        el.classList.add('visible');
       }
     });
-  }, { threshold: 0.1 });
-  const ledger = document.querySelector('.ledger');
-  if (ledger) rowObserver.observe(ledger);
+    ledgerRows.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 50) {
+        el.classList.add('visible');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll();
+});
 </script>
+
 </body>
 </html>
