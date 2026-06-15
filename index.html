@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Raja Ravi Teja Madagala — Senior Construction Estimator</title>
+  <title>Raja Ravi Teja Madagala — Construction Estimator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -769,10 +769,10 @@
           After eight years across <strong>government, education, commercial, and tourism sectors</strong>, I know where the risk hides and how to price it honestly.
         </p>
         <p>
-          My background spans the full pre-construction lifecycle: from <strong>Early Contractor Involvement (ECI)</strong> engagements where I'm shaping scope before design is locked, through to lump sum and cost-reimbursable delivery. I've built estimates from concept sketches and engineering briefs where drawings don't exist yet, and I've priced complex risk — remote logistics, heritage compliance, staged delivery — with specificity.
+          My background spans the full pre-construction lifecycle: from <strong>Early Contractor Involvement (ECI)</strong> engagements where I'm shaping scope before design is locked, through to lump[...]
         </p>
         <p>
-          At Paynters and Johns Lyng Group, I've worked on projects where the margin for error is real — remote island logistics, rectification works, government compliance — and delivered tenders that win on substance, not just price.
+          At Paynters and Johns Lyng Group, I've worked on projects where the margin for error is real — remote island logistics, rectification works, government compliance — and delivered tenders[...]
         </p>
       </div>
       <div class="value-cards">
@@ -1008,13 +1008,6 @@
             <div class="contact-link-value">rajaravitejamadagala@gmail.com</div>
           </div>
         </a>
-        <a href="https://www.linkedin.com/in/rajaravitejamadagala/" class="contact-link" target="_blank">
-          <span class="contact-link-icon">💼</span>
-          <div>
-            <div class="contact-link-label">LinkedIn</div>
-            <div class="contact-link-value">linkedin.com/in/rajaravitejamadagala</div>
-          </div>
-        </a>
       </div>
     </div>
   </div>
@@ -1023,18 +1016,16 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-name">Raja Madagala</div>
-    <div class="footer-copy">&copy; 2025. All rights reserved.</div>
+    <div class="footer-name">Raja Ravi Teja Madagala</div>
+    <div class="footer-copy">© 2025 All rights reserved. Queensland, Australia.</div>
   </div>
 </footer>
 
-<!-- Scroll & Reveal -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Nav scroll effect
+  // Scroll event for nav background
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 50) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
       nav.classList.add('scrolled');
     } else {
       nav.classList.remove('scrolled');
@@ -1043,26 +1034,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach((reveal) => observer.observe(reveal));
+
+  // Ledger rows reveal
   const ledgerRows = document.querySelectorAll('.ledger-row');
-
-  function revealOnScroll() {
-    reveals.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 50) {
-        el.classList.add('visible');
+  const ledgerObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, idx) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), idx * 80);
       }
     });
-    ledgerRows.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 50) {
-        el.classList.add('visible');
-      }
-    });
-  }
+  }, { threshold: 0.1 });
 
-  window.addEventListener('scroll', revealOnScroll);
-  revealOnScroll();
-});
+  ledgerRows.forEach((row) => ledgerObserver.observe(row));
 </script>
 
 </body>
